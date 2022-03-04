@@ -110,4 +110,5 @@ resource "aws_instance" "inst3" {
   subnet_id = aws_subnet.subnet1.id
   ami = data.aws_ami.ubuntu.id
   instance_type = "t3.micro"
+  associate_public_ip_address = false
 }
