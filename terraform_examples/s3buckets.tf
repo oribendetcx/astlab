@@ -9,6 +9,16 @@ resource "aws_s3_bucket" "cloudtrail_bucket" {
   bucket = "aws-cloudtrail-logs-solvo-demo"
 }
 
+resource "aws_s3_bucket_public_access_block" "example" {
+  bucket = aws_s3_bucket.cloudtrail_bucket.id
+
+  block_public_acls       = false
+  block_public_policy     = false
+  ignore_public_acls      = false
+  restrict_public_buckets = false
+}
+
+
 data "aws_iam_policy_document" "cloudtrail_bucket_policy_doc" {
   statement {
     sid = "AWSCloudTrail"
@@ -32,9 +42,9 @@ data "aws_iam_policy_document" "cloudtrail_bucket_policy_doc" {
       type        = "AWS"
       identifiers = ["*"]
     }
-//
+
     actions = [
-      "s3:Get*" 
+      "s3:Get*"
     ]
 
     resources = [
