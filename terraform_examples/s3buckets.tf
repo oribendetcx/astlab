@@ -30,7 +30,7 @@ data "aws_iam_policy_document" "cloudtrail_bucket_policy_doc" {
     actions = [
       "s3:*"
     ]
-
+//
     resources = [
       aws_s3_bucket.cloudtrail_bucket.arn,
       "${aws_s3_bucket.cloudtrail_bucket.arn}/*",
